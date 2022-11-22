@@ -1,0 +1,10 @@
+*{
+    margin: 0;
+    background: black;
+}
+
+.snake{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
