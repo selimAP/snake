@@ -1,10 +1,34 @@
 *{
     margin: 0;
-    background: black;
+    background: #b2c302;
+
+}
+
+.main{
+    height: 100vh;
+    width: 100%;
 }
 
 .snake{
+    margin-top: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+.snake canvas{
+    border:3px solid rgb(0, 0, 0);
+}
+
+.counting{
+    color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 25px;
+}
+
+.counter{
+    margin-top: 100px;
+    margin-left: 440px;
+}
+

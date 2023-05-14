@@ -36,13 +36,19 @@ function draw() {
     requestAnimationFrame(draw);
 }
 
+function counter(){
+    let counting = document.getElementById("counter");
+    counting.innerHTML++;
+};
+
 function testGameOver() {
 
     let firstPart = snake[0];
     let otherParts = snake.slice(1);
     let duplicatePart = otherParts.find(part => part.x == firstPart.x && part.y == firstPart.y);
 
-    // 1. Schlange läuft gegen die Wand
+
+
     if (snake[0].x < 0 ||
         snake[0].x > cols - 1 ||
         snake[0].y < 0 ||
@@ -55,6 +61,10 @@ function testGameOver() {
             y: 3
         }];
         direction = 'LEFT';
+       // 1. Schlange läuft gegen die Wand Counter wird resetet und Game Over Screen kommt
+
+
+       let counting = document.getElementById("counter").innerHTML = 00;
     }
 
 }
@@ -63,6 +73,10 @@ function testGameOver() {
 function placeFood() {
     let randomX = Math.floor(Math.random() * cols);
     let randomY = Math.floor(Math.random() * rows);
+
+    if(foodCollected){ //Countertest
+        counter();
+    }
 
     food = {
         x: randomX,
@@ -135,3 +149,4 @@ function keyDown(e) {
         direction = 'DOWN';
     }
 }
+
