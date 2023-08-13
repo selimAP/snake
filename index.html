@@ -15,12 +15,26 @@
 <body>
 
     <div class="main">
+
+    <div class="snake">
         <div class="counting">
             <div class="counter" id="counter">00</div>
         </div>
-    <div class="snake">
         <canvas id="canvas" width="480" height="480"></canvas>
     </div>
+    <div class="main-menu" id="mainMenu">
+        <div class="menu-container">
+            <div class="Score">
+                <h2>Your Score:</h2>
+                <div id="actuellScore">00</div>
+            </div>
+            <div class="menuButtons">
+                <button id="startButton">Start</button>
+                <button onclick="window.open('https://github.com/selimAP', '_blank');">Credits</button>
+            </div>
+     </div>
+
+
 </div>
 
     <script src="script.js"></script>

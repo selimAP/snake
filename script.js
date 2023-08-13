@@ -13,20 +13,15 @@ let cellWidth = canvas.width / cols;
 let cellHeight = canvas.height / rows;
 let direction = 'LEFT';
 let foodCollected = false;
+let pauseGame = true;
+let gameInterval;
 
 placeFood();
-
-setInterval(gameLoop, 200);
-document.addEventListener('keydown', keyDown);
-
-
-draw();
 
 function draw() {
     ctx.fillStyle = '#b2c302';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = '#7d720b';
-
 
     snake.forEach(part => add(part.x, part.y));
 
@@ -36,18 +31,31 @@ function draw() {
     requestAnimationFrame(draw);
 }
 
-function counter(){
+function counter() {
     let counting = document.getElementById("counter");
     counting.innerHTML++;
+}
+
+// Menu
+let mainMenu = document.getElementById('mainMenu');
+
+let menu = document.getElementById('startButton').onclick = function () {
+    mainMenu.style.display = 'none';
+    pauseGame = false; // Starte das Spiel
+
+    if (!gameInterval) {
+        gameInterval = setInterval(gameLoop, 250);
+    }
+
+    document.addEventListener('keydown', keyDown);
+
+    draw();
 };
 
-function testGameOver() {
-
+function GameOver() {
     let firstPart = snake[0];
     let otherParts = snake.slice(1);
-    let duplicatePart = otherParts.find(part => part.x == firstPart.x && part.y == firstPart.y);
-
-
+    let duplicatePart = otherParts.find(part => part.x === firstPart.x && part.y === firstPart.y);
 
     if (snake[0].x < 0 ||
         snake[0].x > cols - 1 ||
@@ -61,20 +69,22 @@ function testGameOver() {
             y: 3
         }];
         direction = 'LEFT';
-       // 1. Schlange läuft gegen die Wand Counter wird resetet und Game Over Screen kommt
 
+        mainMenu.style.display = 'block';
 
-       let counting = document.getElementById("counter").innerHTML = 00;
+        let counting = document.getElementById("counter").innerHTML = '00';
+
+        clearInterval(gameInterval); // Stoppe den Game-Loop
+        gameInterval = null; // Setze das gameInterval zurück
+        pauseGame = true; // Setze das Spiel auf Pause
     }
-
 }
-
 
 function placeFood() {
     let randomX = Math.floor(Math.random() * cols);
     let randomY = Math.floor(Math.random() * rows);
 
-    if(foodCollected){ //Countertest
+    if (foodCollected) { // Countertest
         counter();
     }
 
@@ -98,7 +108,12 @@ function shiftSnake() {
 }
 
 function gameLoop() {
-    testGameOver();
+    if (pauseGame) {
+        return; // Der Game-Loop stoppt, wenn das Spiel pausiert ist
+    }
+
+    GameOver();
+
     if (foodCollected) {
         snake = [{
             x: snake[0].x,
@@ -132,7 +147,6 @@ function gameLoop() {
 
         placeFood();
     }
-
 }
 
 function keyDown(e) {
@@ -149,4 +163,3 @@ function keyDown(e) {
         direction = 'DOWN';
     }
 }
-

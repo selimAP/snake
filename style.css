@@ -1,34 +1,86 @@
 *{
     margin: 0;
     background: #b2c302;
-
 }
 
 .main{
     height: 100vh;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #838f02;
 }
 
 .snake{
     margin-top: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
 }
 .snake canvas{
+    display: flex;
     border:3px solid rgb(0, 0, 0);
 }
 
 .counting{
     color: rgb(0, 0, 0);
     display: flex;
-    justify-content: center;
+    justify-content: right;
     font-family: 'Press Start 2P', cursive;
     font-size: 25px;
+    background: #838f02;
 }
-
 .counter{
-    margin-top: 100px;
-    margin-left: 440px;
+    background: #838f02;
 }
 
+
+
+.main-menu{
+    display: block;
+    font-family: 'Press Start 2P', cursive;
+    position: fixed;
+    z-index: 10000;
+        border: 3px solid black;
+        padding: 100px;
+        background: #3f4402;
+}
+
+.Score{
+    color: white;
+
+}
+.Score h2{
+    background: #3f4402;    
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+.Score div{
+    background: #3f4402;
+    font-size: 19px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.menuButtons{
+    background: #3f4402;
+
+}
+.menuButtons button{
+    background: #3f4402;
+    height: 40px;
+    width: 150px;
+    border: 1px solid white;
+    border-radius: 3px;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    margin-top: 20px;
+
+}
+.menuButtons button:hover{
+    background: #747e04;
+    transition: .3s;
+    cursor: pointer;
+}
