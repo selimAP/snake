@@ -17,7 +17,45 @@ let foodCollected = false;
 let pauseGame = true;
 let gameInterval;
 
+
 let CurrentScore = document.getElementById("CurrentScore");
+
+const deathAudio = new Audio('Audio/Retro-death-sound.wav');
+const audio = new Audio('Audio/Retro-coin-sound.wav');
+const quietAudio = new Audio('Audio/psst.wav');
+const musicVolumeIcon = document.getElementById('musicVolume');
+let playMusic = false;
+
+musicVolumeIcon.addEventListener('click', toggleMusic);
+
+function toggleMusic() {
+    playMusic = !playMusic;
+
+    if (playMusic) {
+        musicVolumeIcon.innerHTML = '<ion-icon name="volume-high-outline"></ion-icon>';
+        audio.play();
+    } else {
+        musicVolumeIcon.innerHTML = '<ion-icon name="volume-mute-outline"></ion-icon>';
+        quietAudio.play();
+    }
+}
+
+function playAudio() {
+    if (playMusic) {
+        audio.play();
+        musicVolumeIcon.innerHTML = '<ion-icon name="volume-high-outline"></ion-icon>';
+    }
+}
+
+function playDeathAudio() {
+    if (playMusic) {
+        deathAudio.play();
+        musicVolumeIcon.innerHTML = '<ion-icon name="volume-high-outline"></ion-icon>';
+    }
+}
+
+
+
 
 placeFood();
 
@@ -61,6 +99,8 @@ let menu = document.getElementById('startButton').onclick = function () {
     draw();
 
     CurrentScore.innerHTML = '00';
+
+    playAudio()
 };
 
 function GameOver() {
@@ -92,6 +132,8 @@ function GameOver() {
         gameInterval = null; // Setze das gameInterval zurück
         pauseGame = true; // Setze das Spiel auf Pause
         startButton.innerHTML = 'Replay';
+
+        playDeathAudio();
     }
 }
 
@@ -139,6 +181,7 @@ function gameLoop() {
         }, ...snake];
 
         foodCollected = false;
+        playAudio()
     }
 
     shiftSnake();
@@ -190,4 +233,6 @@ function keyDown(e) {
         direction = 'DOWN';
     }
 }
+
+
 

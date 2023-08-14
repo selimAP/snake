@@ -83,3 +83,37 @@
     transition: .3s;
     cursor: pointer;
 }
+
+.music-volume{
+    background: #3f4402;
+    display: flex;
+    justify-content: center;
+}
+.music-volume button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #3f4402;
+    height: 40px;
+    width: 40px;
+    border: 1px solid white;
+    border-radius: 50%;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    margin-top: 10px;
+    font-size: 20px;
+}
+.music-volume button:hover{
+    background: #747e04;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.music-volume ion-icon{
+    background: none;
+    display: flex;
+}
+
+.music-volume span{
+    display: none;
+}
