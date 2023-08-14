@@ -48,7 +48,6 @@
 
 .Score{
     color: white;
-
 }
 .Score h2{
     background: #3f4402;    
@@ -58,7 +57,7 @@
 }
 .Score div{
     background: #3f4402;
-    font-size: 19px;
+    font-size: 40px;
     padding: 10px;
     display: flex;
     justify-content: center;
@@ -66,7 +65,8 @@
 
 .menuButtons{
     background: #3f4402;
-
+    display: flex;
+    justify-content: center;
 }
 .menuButtons button{
     background: #3f4402;
@@ -76,8 +76,7 @@
     border-radius: 3px;
     color: white;
     font-family: 'Press Start 2P', cursive;
-    margin-top: 20px;
-
+    margin: 20px  10px 0px 10px;
 }
 .menuButtons button:hover{
     background: #747e04;

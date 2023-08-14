@@ -16,6 +16,8 @@ let foodCollected = false;
 let pauseGame = true;
 let gameInterval;
 
+let CurrentScore = document.getElementById("CurrentScore");
+
 placeFood();
 
 function draw() {
@@ -36,6 +38,12 @@ function counter() {
     counting.innerHTML++;
 }
 
+function currentScore(){
+
+    CurrentScore.innerHTML++;
+}
+
+
 // Menu
 let mainMenu = document.getElementById('mainMenu');
 
@@ -50,6 +58,8 @@ let menu = document.getElementById('startButton').onclick = function () {
     document.addEventListener('keydown', keyDown);
 
     draw();
+
+    CurrentScore.innerHTML = '00';
 };
 
 function GameOver() {
@@ -72,11 +82,15 @@ function GameOver() {
 
         mainMenu.style.display = 'block';
 
+
         let counting = document.getElementById("counter").innerHTML = '00';
+
+
 
         clearInterval(gameInterval); // Stoppe den Game-Loop
         gameInterval = null; // Setze das gameInterval zurück
         pauseGame = true; // Setze das Spiel auf Pause
+        startButton.innerHTML = 'Replay';
     }
 }
 
@@ -86,6 +100,9 @@ function placeFood() {
 
     if (foodCollected) { // Countertest
         counter();
+    }
+    if(foodCollected){
+        currentScore();
     }
 
     food = {
