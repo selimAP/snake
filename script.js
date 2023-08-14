@@ -12,6 +12,7 @@ let food;
 let cellWidth = canvas.width / cols;
 let cellHeight = canvas.height / rows;
 let direction = 'LEFT';
+let previousDirection = '';
 let foodCollected = false;
 let pauseGame = true;
 let gameInterval;
@@ -52,7 +53,7 @@ let menu = document.getElementById('startButton').onclick = function () {
     pauseGame = false; // Starte das Spiel
 
     if (!gameInterval) {
-        gameInterval = setInterval(gameLoop, 250);
+        gameInterval = setInterval(gameLoop, 200);
     }
 
     document.addEventListener('keydown', keyDown);
@@ -126,7 +127,7 @@ function shiftSnake() {
 
 function gameLoop() {
     if (pauseGame) {
-        return; // Der Game-Loop stoppt, wenn das Spiel pausiert ist
+        return;
     }
 
     GameOver();
@@ -142,26 +143,35 @@ function gameLoop() {
 
     shiftSnake();
 
-    if (direction == 'LEFT') {
+
+    if ((direction === 'LEFT' && previousDirection !== 'RIGHT') ||
+        (direction === 'RIGHT' && previousDirection !== 'LEFT') ||
+        (direction === 'UP' && previousDirection !== 'DOWN') ||
+        (direction === 'DOWN' && previousDirection !== 'UP')) {
+        
+        previousDirection = direction;
+    }
+
+
+    if (previousDirection == 'LEFT') {
         snake[0].x--;
     }
 
-    if (direction == 'RIGHT') {
+    if (previousDirection == 'RIGHT') {
         snake[0].x++;
     }
 
-    if (direction == 'UP') {
+    if (previousDirection == 'UP') {
         snake[0].y--;
     }
 
-    if (direction == 'DOWN') {
+    if (previousDirection == 'DOWN') {
         snake[0].y++;
     }
 
     if (snake[0].x == food.x &&
         snake[0].y == food.y) {
         foodCollected = true;
-
         placeFood();
     }
 }
@@ -180,3 +190,4 @@ function keyDown(e) {
         direction = 'DOWN';
     }
 }
+
